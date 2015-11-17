@@ -6,7 +6,7 @@ from setuptools import setup, find_packages
 import glob, os
 
 def get_files(source, target):
-    files = filter(lambda x: '__init__.py' not in x, glob.glob(source+'/*'))
+    files = glob.glob(source+'/*')
     return (target, files)
 
 def requirements(filename):
@@ -23,7 +23,7 @@ setup(
     long_description="Contrail heat resources and templates",
 
     install_requires=requirements('requirements.txt'),
-    data_files=[get_files('contrail_heat/resources', '/usr/lib/heat/resources'),
-                get_files('contrail_heat/template', '/usr/lib/heat/template'),
-                get_files('contrail_heat/env', '/usr/lib/heat/env')]
+    data_files=[get_files('contrail_heat/resources', '/usr/lib/heat/contrail/resources'),
+                get_files('contrail_heat/template', '/usr/lib/heat/contrail/template'),
+                get_files('contrail_heat/env', '/usr/lib/heat/contrail/env')]
 )
